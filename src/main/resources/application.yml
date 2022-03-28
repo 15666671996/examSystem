@@ -1,0 +1,8 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://52.224.179.179:3306/mathproject?serverTimezone=UTC
+    username: root
+    password: Ydy980120980120

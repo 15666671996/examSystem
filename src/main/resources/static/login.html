@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>login</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="login.css"/>
+    <script src="login.js"></script>
+</head>
+
+<body>
+<div class="container-fluid bg">
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12"></div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <form class="form-container">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email address</label>
+                    <input id="email" type="email" class="form-control" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input id="password" type="password" class="form-control">
+                </div>
+                <!--<div class="form-group">Remember me-->
+                    <!--<input type="checkbox">-->
+                    <!--<li><a href="register.html" class="href" target="_blank">Forget password ?</a></li>-->
+                <!--</div>-->
+                <div class="form-group">
+                    <button id="login" type="button" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
