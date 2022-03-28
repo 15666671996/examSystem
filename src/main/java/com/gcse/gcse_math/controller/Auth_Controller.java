@@ -17,6 +17,9 @@ public class Auth_Controller {
         return service.login(new User(email,password));
     }
 
+
+
+
     @RequestMapping("/checkUserName")
     public HashMap<String, Object> checkUserName(String email) {
 

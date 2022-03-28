@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Repository
@@ -19,16 +21,17 @@ public class Auth_Repository implements Auth_Repository_Interface {
     public HashMap<String, Object> login(User user) {
         HashMap<String, Object> rtn = new HashMap<>();
         try {
-            String sql = "select COUNT(*) from user where email='" + user.getEmail() + "' and password='" + user.getPassword() + "'";
-            int result = template.queryForObject(sql, Integer.class);
-            if (result > 0) {
-                rtn.put("status", true);
+            String sql = "select * from user where email=? and password=?";
+            List<Map<String, Object>> result = template.queryForList(sql, user.getEmail(), user.getPassword());
+            if (result.size() > 0) {
+                rtn.put("status", "success");
+                rtn.put("permissionLevel",result.get(0).get("level"));
             } else {
-                rtn.put("status", false);
+                rtn.put("status", "failed");
                 rtn.put("message", "email or password not correct");
             }
         } catch (DataAccessException e) {
-            rtn.put("status", false);
+            rtn.put("status", "exception");
             rtn.put("message", "server exception");
             System.out.println(e.getMessage());
         }
@@ -42,12 +45,12 @@ public class Auth_Repository implements Auth_Repository_Interface {
             String sql = "select COUNT(*) from user where email='" + email + "'";
             int result = template.queryForObject(sql, Integer.class);
             if (result == 0) {
-                rtn.put("status", true);
+                rtn.put("status", "available");
             } else {
-                rtn.put("status", false);
+                rtn.put("status", "unavailable");
             }
         } catch (DataAccessException e) {
-            rtn.put("status", false);
+            rtn.put("status", "exception");
             rtn.put("message", "server exception");
             System.out.println(e.getMessage());
         }

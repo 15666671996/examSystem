@@ -20,10 +20,13 @@ public class Auth_Service implements Auth_Service_Interface {
     @Override
     public HashMap<String, Object> login(User user) {
         HashMap<String, Object> rtn = repository.login(user);
-        if ((boolean) rtn.get("status")) {
+        if ("success".equals(rtn.get("status"))) {
             HttpSession session = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest().getSession();
             session.setAttribute("currentUser", user.getEmail());
+            session.setAttribute("permissionLevel", rtn.get("permissionLevel"));
         }
+
+
         return rtn;
     }
 }
